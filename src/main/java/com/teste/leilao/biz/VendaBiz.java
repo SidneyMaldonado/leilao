@@ -2,7 +2,11 @@ package com.teste.leilao.biz;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.teste.mark1.banco.biz.Mensagem;
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.entities.Venda;
+import com.teste.leilao.repositories.AnimalRepository;
+
+
 
 
 
@@ -28,12 +32,12 @@ public class VendaBiz {
 		Boolean result = true;
 		msg = new Mensagem();
 	
-	if (pessoaRepositorio.findById( venda.getCodigoSetor()) == null) {
+	if (pessoaRepositorio.findById( venda.getIdPessoa()) == null) {
    	 msg.mensagens.add("A pessoa escolhida nao é valida");
    	 result = false;
     }
 	
-	if (animalRepositorio.findById( venda.getCodigoSetor()) == null) {
+	if (animalRepositorio.findById( venda.getIdAnimal()) == null) {
    	 msg.mensagens.add("O animal escolhido nao é valido");
    	 result = false;
     }
