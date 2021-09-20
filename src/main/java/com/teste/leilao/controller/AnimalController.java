@@ -41,7 +41,7 @@ public class AnimalController {
 	public Mensagem salvar(@RequestBody Animal animal ) {
 		
 		animal.setIdAnimal(0);	
-		AnimalBiz animalBiz = new animalBiz(leilaoRepositorio, medicoVeterinarioRepositorio);
+		AnimalBiz animalBiz = new AnimalBiz(leilaoRepositorio, medicoVeterinarioRepositorio);
 		
 		try {
 			//validar todos os dominios e regras
