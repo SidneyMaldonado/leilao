@@ -23,14 +23,12 @@ public class MedicoVeterinarioController<AnimalRepository, Animal> {
     @Autowired
     private MedicoVeterinarioRepository medicoveterinarioRepository;
 
-    @Autowired
-    private AnimalRepository animalRepository;
   
 
     @GetMapping("listar")
     public List<MedicoVeterinario> listar(){
 
-        List<MedicoVeterinario> lista = MedicoVeterinarioRepository.findAll();
+        List<MedicoVeterinario> lista = medicoveterinarioRepository.findAll();
         return lista;
 
     }
@@ -38,8 +36,8 @@ public class MedicoVeterinarioController<AnimalRepository, Animal> {
     @PostMapping("incluir")
     public Mensagem salvar(@RequestBody MedicoVeterinario medicoveterinario ) {
 
-    	medicoveterinario.setIdInstrumento(0);
-    	MedicoVeterinarioBiz instrumentoBiz = new MedicoVeterinarioBiz(AnimalRepository);
+    	medicoveterinario.setIdidmedicoveterinario(0);
+    	MedicoVeterinarioBiz medicoveterinarioBiz = new MedicoVeterinarioBiz();
 
         try {
 

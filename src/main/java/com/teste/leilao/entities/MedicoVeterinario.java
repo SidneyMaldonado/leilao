@@ -1,6 +1,5 @@
 package com.teste.leilao.entities;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,17 +15,48 @@ public class MedicoVeterinario {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
 	@Column(name= "idmedicoveterinario")
-	public Integer ididmedicoveterinario;
+	private Integer ididmedicoveterinario;
 	
 	@Column(name= "nome")
-	public String nome;
+	private String nome;
 	
 	@Column(name= "email")
-	public String email;
+	private String email;
 	
 	@Column(name= "telefone")
-	public String telefone;
+	private String telefone;
 
-	return null;
+	public Integer getIdidmedicoveterinario() {
+		return ididmedicoveterinario;
 	}
+
+	public void setIdidmedicoveterinario(Integer ididmedicoveterinario) {
+		this.ididmedicoveterinario = ididmedicoveterinario;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	
 }
