@@ -44,7 +44,7 @@ public class FazendaController {
 
         try {
 
-            if (FazendaBiz.Validade(fazenda)) {
+            if (fazendaBiz.Validade(fazenda)) {
                 this.fazendaRepository.save(fazenda);
                 this.fazendaRepository.flush();
             } else {
