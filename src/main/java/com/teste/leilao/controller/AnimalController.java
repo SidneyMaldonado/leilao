@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teste.leilao.biz.LeilaoRepository;
+import com.teste.leilao.biz.MedicoVeterinarioRepository;
 import com.teste.leilao.entities.Animal;
 import com.teste.leilao.repositories.AnimalRepository;
 
@@ -21,6 +23,12 @@ public class AnimalController {
 	@Autowired
 	private AnimalRepository animalRepositorio;
 	
+	@Autowired
+	public LeilaoRepository leilaoRepositorio;
+	
+	@Autowired
+	public MedicoVeterinarioRepository medicoVeterinarioRepositorio;
+	
 	@GetMapping("listar")
 	public List<Animal> listar() {
 	
@@ -32,7 +40,7 @@ public class AnimalController {
 	public Mensagem salvar(@RequestBody Animal animal ) {
 		
 		animal.setIdAnimal(0);	
-		AnimalBiz animalBiz = new animalBiz();
+		AnimalBiz animalBiz = new animalBiz(leilaoRepositorio, medicoVeterinarioRepositorio);
 		
 		try {
 			//validar todos os dominios e regras
