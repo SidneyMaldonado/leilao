@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.Venda;
 import com.teste.leilao.repositories.AnimalRepository;
+import com.teste.leilao.repositories.PessoaRepository;
 
 
 
@@ -32,12 +33,17 @@ public class VendaBiz {
 		Boolean result = true;
 		msg = new Mensagem();
 	
-	if (pessoaRepositorio.findById( venda.getIdPessoa()) == null) {
+	if (pessoaRepositorio.findById( venda.getIdcomprador()) == null) {
    	 msg.mensagens.add("A pessoa escolhida nao é valida");
    	 result = false;
     }
 	
-	if (animalRepositorio.findById( venda.getIdAnimal()) == null) {
+	if (pessoaRepositorio.findById( venda.getIdvendedor()) == null) {
+	   	 msg.mensagens.add("A pessoa escolhida nao é valida");
+	   	 result = false;
+	    }
+	
+	if (animalRepositorio.findById( venda.getIdanimal()) == null) {
    	 msg.mensagens.add("O animal escolhido nao é valido");
    	 result = false;
     }

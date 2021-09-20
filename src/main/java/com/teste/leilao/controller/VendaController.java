@@ -1,10 +1,24 @@
 package com.teste.leilao.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.biz.VendaBiz;
+import com.teste.leilao.entities.Venda;
+import com.teste.leilao.repositories.AnimalRepository;
+import com.teste.leilao.repositories.PessoaRepository;
 import com.teste.leilao.repositories.VendaRepository;
+
+
 
 
 
@@ -16,13 +30,37 @@ public class VendaController {
 	private VendaRepository vendaRepositorio;
 	
 	@Autowired
-	private CompradorRepository compradorRepositorio;
-	
-	@Autowired 
-	private VendedorRepository vendedorRepositorio;
+	private PessoaRepository pessoaRepositorio;
 	
 	@Autowired 
 	private AnimalRepository animalRepositorio;
 	
-
+	@GetMapping("listar")
+	public List<Venda> listar(){
+		
+		List<Venda> lista = vendaRepositorio.findAll();
+		return lista;
+		
+	}
+	
+	@PostMapping("incluir")
+	public Mensagem salvar(@Valid @RequestBody Venda venda ) {
+		
+		VendaBiz vendaBiz = new VendaBiz(pessoaRepositorio,animalRepositorio);
+		
+		try {
+            if(VendaBiz.Validade(venda)){
+                this.vendaRepositorio.save(tipoPessoa);
+                this.vendaRepositorio.flush();
+            }else{
+                return VendaBiz.msg;
+            }
+        }catch (Exception e) {
+            VendaBiz.msg.mensagens.add(e.getMessage());
+            return VendaBiz.msg;
+        }
+        VendaBiz.msg.mensagens.add("OK");
+        return VendaBiz.msg;
+	
+	}
 }
