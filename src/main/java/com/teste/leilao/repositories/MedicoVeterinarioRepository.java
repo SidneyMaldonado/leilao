@@ -1,6 +1,6 @@
 package com.teste.leilao.repositories;
 
-import com.teste.leilao.entities.Fazenda;
+import com.teste.leilao.entities.MedicoVeterinario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
