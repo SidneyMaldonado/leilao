@@ -15,10 +15,10 @@ public class AnimalBiz {
 	public Mensagem msg;
 	
 	@Autowired
-	public LeilaoRepository leilaoRepositorio;
+	private LeilaoRepository leilaoRepositorio;
 	
 	@Autowired
-	public MedicoVeterinarioRepository medicoVeterinarioRepositorio;
+	private MedicoVeterinarioRepository medicoVeterinarioRepositorio;
 	
 	public AnimalBiz(LeilaoRepository leilaoRepo, MedicoVeterinarioRepository medicoVeterinarioRepo) {
 		this.leilaoRepositorio = leilaoRepo;
@@ -48,6 +48,31 @@ public class AnimalBiz {
 			msg.mensagens.add( "O Preco não pode ser negativo");
 			result = false;
 		}
-		return result;
+		return result;	
 	}
+
+	public Mensagem getMsg() {
+		return msg;
+	}
+
+	public void setMsg(Mensagem msg) {
+		this.msg = msg;
+	}
+
+	public LeilaoRepository getLeilaoRepositorio() {
+		return leilaoRepositorio;
+	}
+
+	public void setLeilaoRepositorio(LeilaoRepository leilaoRepositorio) {
+		this.leilaoRepositorio = leilaoRepositorio;
+	}
+
+	public MedicoVeterinarioRepository getMedicoVeterinarioRepositorio() {
+		return medicoVeterinarioRepositorio;
+	}
+
+	public void setMedicoVeterinarioRepositorio(MedicoVeterinarioRepository medicoVeterinarioRepositorio) {
+		this.medicoVeterinarioRepositorio = medicoVeterinarioRepositorio;
+	}
+	
 }
