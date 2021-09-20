@@ -10,49 +10,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teste.leilao.repositories.FazendaRepository;
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.biz.MedicoVeterinarioBiz;
+import com.teste.leilao.entities.MedicoVeterinario;
+import com.teste.leilao.repositories.MedicoVeterinarioRepository;
 
 @RestController
-@RequestMapping("fazenda")
-public class MedicoVeterinarioController {
+@RequestMapping("medicoveterinario")
+public class MedicoVeterinarioController<AnimalRepository, Animal> {
 
 
     @Autowired
-    private FazendaRepository fazendaRepository;
+    private MedicoVeterinarioRepository medicoveterinarioRepository;
 
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private AnimalRepository animalRepository;
   
 
     @GetMapping("listar")
-    public List<Fazenda> listar(){
+    public List<MedicoVeterinario> listar(){
 
-        List<Fazenda> lista = fazendaRepository.findAll();
+        List<MedicoVeterinario> lista = MedicoVeterinarioRepository.findAll();
         return lista;
 
     }
 
     @PostMapping("incluir")
-    public Mensagem salvar(@RequestBody Fazenda fazenda ) {
+    public Mensagem salvar(@RequestBody MedicoVeterinario medicoveterinario ) {
 
-        fazenda.setIdInstrumento(0);
-        FazendaBiz instrumentoBiz = new FazendaBiz(pessoaRepository);
+    	medicoveterinario.setIdInstrumento(0);
+    	MedicoVeterinarioBiz instrumentoBiz = new MedicoVeterinarioBiz(AnimalRepository);
 
         try {
 
-            if (fazendaBiz.Validade(fazenda)) {
-                this.fazendaRepository.save(fazenda);
-                this.fazendaRepository.flush();
+            if (medicoveterinarioBiz.Validade(medicoveterinario)) {
+                this.medicoveterinarioRepository.save(medicoveterinario);
+                this.medicoveterinarioRepository.flush();
             } else {
-                return fazendaBiz.msg;
+                return medicoveterinarioBiz.msg;
             }
         } catch (Exception e) {
-            fazendaBiz.msg.mensagens.add(e.getMessage());
-            return fazendaBiz.msg;
+        	medicoveterinarioBiz.msg.mensagens.add(e.getMessage());
+            return medicoveterinarioBiz.msg;
         }
-        fazendaBiz.msg.mensagens.add("OK");
+        medicoveterinarioBiz.msg.mensagens.add("OK");
 
-        return fazendaBiz.msg;
+        return medicoveterinarioBiz.msg;
 
     }
 
