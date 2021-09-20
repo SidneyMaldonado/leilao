@@ -3,6 +3,10 @@ package com.teste.leilao.controller;
 import java.util.List;
 
 
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.biz.FazendaBiz;
+import com.teste.leilao.entities.Fazenda;
+import com.teste.leilao.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +39,12 @@ public class FazendaController {
     @PostMapping("incluir")
     public Mensagem salvar(@RequestBody Fazenda fazenda ) {
 
-        fazenda.setIdInstrumento(0);
-        FazendaBiz instrumentoBiz = new FazendaBiz(pessoaRepository);
+        fazenda.setIdFazenda(0);
+        FazendaBiz fazendaBiz = new FazendaBiz(pessoaRepository);
 
         try {
 
-            if (fazendaBiz.Validade(fazenda)) {
+            if (FazendaBiz.Validade(fazenda)) {
                 this.fazendaRepository.save(fazenda);
                 this.fazendaRepository.flush();
             } else {

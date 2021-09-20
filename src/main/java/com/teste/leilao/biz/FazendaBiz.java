@@ -1,5 +1,9 @@
 package com.teste.leilao.biz;
 
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.entities.Fazenda;
+import com.teste.leilao.repositories.PessoaRepository;
+
 import javax.validation.*;
 
 import java.util.Set;
@@ -22,15 +26,15 @@ public class FazendaBiz {
         Set<ConstraintViolation<Fazenda>> constraintViolationSet = validator.validate(fazenda);
 
         Boolean result = true;
-        if (fazenda.getNomeInstrumento().isEmpty()) {
+        if (fazenda.getNome().isEmpty()) {
             msg.mensagens.add("O nome da fazenda não pode ser vazio");
             result = false;
         }
-        if (fazenda.getNomeInstrumento().startsWith("PP")) {
+        if (fazenda.getNome().startsWith("PP")) {
             msg.mensagens.add("O nome da fazenda é inválido");
             result = false;
         }
-        if (pessoaRepository.findById(fazenda.getIdOrquestra()).isEmpty()) {
+        if (pessoaRepository.findById(fazenda.getIdPessoa()).isEmpty()) {
             msg.mensagens.add("Id inexistente");
             result = false;
         }      
