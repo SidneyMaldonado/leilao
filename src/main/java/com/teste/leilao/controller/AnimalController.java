@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.teste.leilao.biz.LeilaoRepository;
-import com.teste.leilao.biz.MedicoVeterinarioRepository;
+import com.teste.leilao.repositories.MedicoVeterinarioRepository;
+import com.teste.leilao.Mensagem;
+import com.teste.leilao.biz.AnimalBiz;
 import com.teste.leilao.entities.Animal;
 import com.teste.leilao.repositories.AnimalRepository;
+import com.teste.leilao.repositories.LeilaoRepository;
 
 
 

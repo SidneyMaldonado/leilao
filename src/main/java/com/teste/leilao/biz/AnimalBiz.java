@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.Animal;
+import com.teste.leilao.repositories.LeilaoRepository;
+import com.teste.leilao.repositories.MedicoVeterinarioRepository;
 
 
 
@@ -46,5 +48,6 @@ public class AnimalBiz {
 			msg.mensagens.add( "O Preco não pode ser negativo");
 			result = false;
 		}
+		return result;
 	}
 }
