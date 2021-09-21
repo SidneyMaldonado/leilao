@@ -29,7 +29,7 @@ public class LeilaoController {
         LeilaoBiz leilaoBiz = new LeilaoBiz();
 
         try {
-            if (leilaoBiz.Leioloada(leilao)) {
+            if (leilaoBiz.Leiloada(leilao)) {
                 this.leilaoRepository.save(leilao);
                 this.leilaoRepository.flush();
             } else {

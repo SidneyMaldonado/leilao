@@ -29,7 +29,7 @@ public class TipoPessoa {
     @Column(name = "idtipopessoa")
     private int idTipoPessoa;
 
-    @Column(name="TipoPessoa", nullable = false, length = 50)
+    @Column(name="tipopessoa", nullable = false, length = 50)
     @Pattern(regexp="[A-z]{10,50}", message="O nome deve ter entre 10 e 50 caracteres")
     private String TipoPessoa;
 }
