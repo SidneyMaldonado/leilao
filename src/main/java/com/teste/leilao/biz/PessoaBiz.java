@@ -2,6 +2,8 @@ package com.teste.leilao.biz;
 
 import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.Pessoa;
+import com.teste.leilao.repositories.TipoPessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.*;
 import java.util.Set;
@@ -9,6 +11,10 @@ import java.util.Set;
 public class PessoaBiz {
 
     public static Mensagem msg;
+
+    @Autowired
+    public TipoPessoaRepository tipoPessoaRepository;
+
     private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = factory.getValidator();
 
@@ -29,6 +35,10 @@ public class PessoaBiz {
         if (pessoa.getNome().startsWith("PP")) {
             msg.mensagens.add("O nome da pessoa é inválido");
             result = false;
+        }
+
+        if(tipoPessoaRepository.existsById(pessoa.getIdtipopessoa())){
+            msg.mensagens.add("Esse tipo pessoa não existe");
         }
 
         if (!constraintViolationSet.isEmpty()) {
