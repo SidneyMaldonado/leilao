@@ -49,18 +49,18 @@ public class VendaController {
 		VendaBiz vendaBiz = new VendaBiz(pessoaRepositorio,animalRepositorio);
 		
 		try {
-            if(VendaBiz.Validade(venda)){
-                this.vendaRepositorio.save(tipoPessoa);
+            if(vendaBiz.Validade(venda)){
+                this.vendaRepositorio.save(venda);
                 this.vendaRepositorio.flush();
             }else{
-                return VendaBiz.msg;
+                return vendaBiz.msg;
             }
         }catch (Exception e) {
-            VendaBiz.msg.mensagens.add(e.getMessage());
-            return VendaBiz.msg;
+			vendaBiz.msg.mensagens.add(e.getMessage());
+            return vendaBiz.msg;
         }
-        VendaBiz.msg.mensagens.add("OK");
-        return VendaBiz.msg;
+		vendaBiz.msg.mensagens.add("OK");
+        return vendaBiz.msg;
 	
 	}
 }
