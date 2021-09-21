@@ -6,12 +6,6 @@ import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.Venda;
 import com.teste.leilao.repositories.AnimalRepository;
 import com.teste.leilao.repositories.PessoaRepository;
-
-
-
-
-
-
 public class VendaBiz {
 	
 	public Mensagem msg;
@@ -30,20 +24,20 @@ public class VendaBiz {
 	
 	public Boolean Validade (Venda venda) {
 		
-		Boolean result = true;
+		boolean result = true;
 		msg = new Mensagem();
 	
-	if (pessoaRepositorio.findById( venda.getIdcomprador()) == null) {
+	if (pessoaRepositorio.findById( venda.getIdcomprador()).isEmpty()) {
    	 msg.mensagens.add("A pessoa escolhida nao é valida");
    	 result = false;
     }
 	
-	if (pessoaRepositorio.findById( venda.getIdvendedor()) == null) {
+	if (pessoaRepositorio.findById( venda.getIdvendedor()).isEmpty()) {
 	   	 msg.mensagens.add("A pessoa escolhida nao é valida");
 	   	 result = false;
 	    }
 	
-	if (animalRepositorio.findById( venda.getIdanimal()) == null) {
+	if (animalRepositorio.findById( venda.getIdanimal()).isEmpty()) {
    	 msg.mensagens.add("O animal escolhido nao é valido");
    	 result = false;
     }

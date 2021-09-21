@@ -5,9 +5,6 @@ package com.teste.leilao.biz;
 import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.MedicoVeterinario;
 
-
-
-
 public class MedicoVeterinarioBiz {
 	
 	public Mensagem msg;	
@@ -15,7 +12,7 @@ public class MedicoVeterinarioBiz {
 
 	public Boolean Validade(MedicoVeterinario medicoveterinario) {
 	
-		Boolean result = true;
+		boolean result = true;
 		if (medicoveterinario.getNome().isEmpty()) {
 			msg.mensagens.add("O nome do Médico não pode ser vazio");
 			result = false;
