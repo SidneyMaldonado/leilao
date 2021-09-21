@@ -36,7 +36,7 @@ public class MedicoVeterinarioController<AnimalRepository, Animal> {
     @PostMapping("incluir")
     public Mensagem salvar(@RequestBody MedicoVeterinario medicoveterinario ) {
 
-    	medicoveterinario.setIdidmedicoveterinario(0);
+    	medicoveterinario.setIdmedicoveterinario(0);
     	MedicoVeterinarioBiz medicoveterinarioBiz = new MedicoVeterinarioBiz();
 
         try {

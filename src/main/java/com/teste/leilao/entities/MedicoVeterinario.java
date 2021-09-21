@@ -13,9 +13,9 @@ import javax.persistence.Table;
 public class MedicoVeterinario {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	@Column(name= "idmedicoveterinario")
-	private Integer ididmedicoveterinario;
+	private Integer idmedicoveterinario;
 	
 	@Column(name= "nome")
 	private String nome;
@@ -26,12 +26,12 @@ public class MedicoVeterinario {
 	@Column(name= "telefone")
 	private String telefone;
 
-	public Integer getIdidmedicoveterinario() {
-		return ididmedicoveterinario;
+	public Integer getIdmedicoveterinario() {
+		return idmedicoveterinario;
 	}
 
-	public void setIdidmedicoveterinario(Integer ididmedicoveterinario) {
-		this.ididmedicoveterinario = ididmedicoveterinario;
+	public void setIdmedicoveterinario(Integer idmedicoveterinario) {
+		this.idmedicoveterinario = idmedicoveterinario;
 	}
 
 	public String getNome() {

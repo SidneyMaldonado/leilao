@@ -54,7 +54,6 @@ public class FazendaController {
             fazendaBiz.msg.mensagens.add(e.getMessage());
             return fazendaBiz.msg;
         }
-        fazendaBiz.msg.mensagens.add("OK");
 
         return fazendaBiz.msg;
 

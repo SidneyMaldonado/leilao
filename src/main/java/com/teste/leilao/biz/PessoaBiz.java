@@ -8,9 +8,13 @@ import java.util.Set;
 
 public class PessoaBiz {
 
-    public static Mensagem msg = new Mensagem();
+    public static Mensagem msg;
     private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = factory.getValidator();
+
+    public PessoaBiz(){
+        msg = new Mensagem();
+    }
 
     public Boolean Validade(Pessoa pessoa) {
 
@@ -19,11 +23,11 @@ public class PessoaBiz {
         boolean result = true;
 
         if (pessoa.getNome().isEmpty()) {
-            msg.mensagens.add("O nome do instrumento não pode ser vazio");
+            msg.mensagens.add("O nome da pessoa não pode ser vazio");
             result = false;
         }
         if (pessoa.getNome().startsWith("PP")) {
-            msg.mensagens.add("O nome do instrumento é inválido");
+            msg.mensagens.add("O nome da pessoa é inválido");
             result = false;
         }
 

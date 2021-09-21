@@ -11,7 +11,7 @@ public class TipoPessoaBiz {
     public Mensagem msg;
 
     public Boolean Leiloada(@Valid TipoPessoa tipopessoa){
-        Boolean result = true;
+        boolean result = true;
         msg = new Mensagem();
 
         if(tipopessoa.getTipoPessoa().isEmpty()){

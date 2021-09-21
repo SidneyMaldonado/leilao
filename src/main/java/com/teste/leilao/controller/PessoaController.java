@@ -10,19 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Pessoa")
+@RequestMapping("pessoa")
 public class PessoaController {
 
     @Autowired
     private PessoaRepository pessoaRepository;
 
     @GetMapping
+    @RequestMapping("listar")
     public List<Pessoa> Get() {
         return pessoaRepository.findAll();
     }
 
 
     @PostMapping
+    @RequestMapping("incluir")
     public Mensagem add(@RequestBody Pessoa pessoa) {
         PessoaBiz pessoaBiz = new PessoaBiz();
         pessoa.setIdPessoa(0);
@@ -39,7 +41,6 @@ public class PessoaController {
             PessoaBiz.msg.mensagens.add(e.getMessage());
             return PessoaBiz.msg;
         }
-        PessoaBiz.msg.mensagens.add("OK");
 
         return PessoaBiz.msg;
 

@@ -9,6 +9,10 @@ public class LeilaoBiz {
 
     public Mensagem msg;
 
+    public LeilaoBiz(){
+        msg = new Mensagem();
+    }
+
     public Boolean Leiloada(@Valid Leilao leilao) {
 
         Boolean result = true;

@@ -12,25 +12,25 @@ import javax.persistence.Table;
 public class Venda {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idvenda")
-	private Integer id;
+	private Integer idVenda;
 	
-	@Column(name="idcomprador", nullable = false, precision =11, scale=0)
+	@Column(name="idcomprador", nullable = false)
 	private Integer idcomprador;
 	
-	@Column(name="idvendedor", nullable = false, precision =11, scale=0)
+	@Column(name="idvendedor", nullable = false)
 	private Integer idvendedor;
 	
-	@Column(name="idanimal", nullable = false, precision =11, scale=0)
+	@Column(name="idanimal", nullable = false)
 	private Integer idanimal;
 
 	public Integer getId() {
-		return id;
+		return idVenda;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.idVenda = id;
 	}
 
 	public Integer getIdcomprador() {
