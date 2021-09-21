@@ -19,7 +19,7 @@ public class Leilao {
     @Column(name = "idleilao")
     private int idLeilao;
 
-    @Column(name = "nome",nullable = false,length = 50)
+    @Column(name = "nome",nullable = false)
     @Pattern(regexp = "[A-z].*[A-z].*", message = "O nome é invalido!")
     private String Nome;
 

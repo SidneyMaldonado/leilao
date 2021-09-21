@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teste.leilao.repositories.FazendaRepository;
 
+import javax.validation.ConstraintViolationException;
+
 @RestController
 @RequestMapping("fazenda")
 public class FazendaController {
@@ -50,8 +52,8 @@ public class FazendaController {
             } else {
                 return fazendaBiz.msg;
             }
-        } catch (Exception e) {
-            fazendaBiz.msg.mensagens.add(e.getMessage());
+        }catch (ConstraintViolationException e) {
+            e.getConstraintViolations().forEach(v -> fazendaBiz.msg.mensagens.add(v.getMessage()));
             return fazendaBiz.msg;
         }
 

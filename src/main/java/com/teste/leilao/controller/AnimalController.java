@@ -15,6 +15,7 @@ import com.teste.leilao.entities.Animal;
 import com.teste.leilao.repositories.AnimalRepository;
 import com.teste.leilao.repositories.LeilaoRepository;
 
+import javax.validation.ConstraintViolationException;
 
 
 @RestController
@@ -51,10 +52,10 @@ public class AnimalController {
 		} else {
 			return animalBiz.msg; 	// retorna a mensagem de erro
 		}
-	} catch (Exception e) {
-		animalBiz.msg.mensagens.add(e.getMessage());
-		return animalBiz.msg;
-	}
+		}catch (ConstraintViolationException e) {
+			e.getConstraintViolations().forEach(v -> animalBiz.msg.mensagens.add(v.getMessage()));
+			return animalBiz.msg;
+		}
 	animalBiz.msg.mensagens.add("OK");
 		
 	return animalBiz.msg;

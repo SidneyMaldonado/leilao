@@ -7,6 +7,7 @@ import com.teste.leilao.repositories.LeilaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RestController
@@ -35,8 +36,8 @@ public class LeilaoController {
             } else {
                 return leilaoBiz.msg;
             }
-        } catch (Exception e) {
-            leilaoBiz.msg.mensagens.add(e.getMessage());
+        }catch (ConstraintViolationException e) {
+            e.getConstraintViolations().forEach(v -> leilaoBiz.msg.mensagens.add(v.getMessage()));
             return leilaoBiz.msg;
         }
         leilaoBiz.msg.mensagens.add("OK");

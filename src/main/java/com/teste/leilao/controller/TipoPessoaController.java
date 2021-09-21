@@ -7,6 +7,7 @@ import com.teste.leilao.repositories.TipoPessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @RestController
@@ -34,8 +35,8 @@ public class TipoPessoaController {
             }else{
                 return tipoPessoaBiz.msg;
             }
-        }catch (Exception e) {
-            tipoPessoaBiz.msg.mensagens.add(e.getMessage());
+        }catch (ConstraintViolationException e) {
+            e.getConstraintViolations().forEach(v -> tipoPessoaBiz.msg.mensagens.add(v.getMessage()));
             return tipoPessoaBiz.msg;
         }
         tipoPessoaBiz.msg.mensagens.add("OK");

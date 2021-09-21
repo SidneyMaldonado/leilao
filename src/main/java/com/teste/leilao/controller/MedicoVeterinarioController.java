@@ -15,6 +15,8 @@ import com.teste.leilao.biz.MedicoVeterinarioBiz;
 import com.teste.leilao.entities.MedicoVeterinario;
 import com.teste.leilao.repositories.MedicoVeterinarioRepository;
 
+import javax.validation.ConstraintViolationException;
+
 @RestController
 @RequestMapping("medicoveterinario")
 public class MedicoVeterinarioController<AnimalRepository, Animal> {
@@ -47,8 +49,8 @@ public class MedicoVeterinarioController<AnimalRepository, Animal> {
             } else {
                 return medicoveterinarioBiz.msg;
             }
-        } catch (Exception e) {
-        	medicoveterinarioBiz.msg.mensagens.add(e.getMessage());
+        }catch (ConstraintViolationException e) {
+            e.getConstraintViolations().forEach(v -> medicoveterinarioBiz.msg.mensagens.add(v.getMessage()));
             return medicoveterinarioBiz.msg;
         }
         medicoveterinarioBiz.msg.mensagens.add("OK");

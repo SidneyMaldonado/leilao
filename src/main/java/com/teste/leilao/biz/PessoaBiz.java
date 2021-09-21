@@ -3,7 +3,6 @@ package com.teste.leilao.biz;
 import com.teste.leilao.Mensagem;
 import com.teste.leilao.entities.Pessoa;
 import com.teste.leilao.repositories.TipoPessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.*;
 import java.util.Set;
@@ -12,14 +11,14 @@ public class PessoaBiz {
 
     public static Mensagem msg;
 
-    @Autowired
-    public TipoPessoaRepository tipoPessoaRepository;
+    private TipoPessoaRepository tipoPessoaRepository;
 
     private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = factory.getValidator();
 
-    public PessoaBiz(){
+    public PessoaBiz(TipoPessoaRepository tipoPessoaRepository){
         msg = new Mensagem();
+        this.tipoPessoaRepository = tipoPessoaRepository;
     }
 
     public Boolean Validade(Pessoa pessoa) {
@@ -37,8 +36,9 @@ public class PessoaBiz {
             result = false;
         }
 
-        if(tipoPessoaRepository.existsById(pessoa.getIdtipopessoa())){
+        if(!tipoPessoaRepository.existsById(pessoa.getIdtipopessoa())){
             msg.mensagens.add("Esse tipo pessoa não existe");
+            result = false;
         }
 
         if (!constraintViolationSet.isEmpty()) {
@@ -49,7 +49,6 @@ public class PessoaBiz {
         if (result) {
             msg.mensagens.add("OK");
         }
-
 
         return result;
 

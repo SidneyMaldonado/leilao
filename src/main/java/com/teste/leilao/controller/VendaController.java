@@ -2,6 +2,7 @@ package com.teste.leilao.controller;
 
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +56,10 @@ public class VendaController {
             }else{
                 return vendaBiz.msg;
             }
-        }catch (Exception e) {
-			vendaBiz.msg.mensagens.add(e.getMessage());
-            return vendaBiz.msg;
-        }
+		}catch (ConstraintViolationException e) {
+			e.getConstraintViolations().forEach(v -> vendaBiz.msg.mensagens.add(v.getMessage()));
+			return vendaBiz.msg;
+		}
 		vendaBiz.msg.mensagens.add("OK");
         return vendaBiz.msg;
 	
